@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="PuppeteerSharp" Version="24.40.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GeradorDocumentos.Dominio\GeradorDocumentos.Dominio.csproj" />
+  </ItemGroup>
+
 </Project>
