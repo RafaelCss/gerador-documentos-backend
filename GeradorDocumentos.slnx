@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/Api/">
+    <Project Path="GeradorDocumentos.Api/GeradorDocumentos.Api.csproj" />
+  </Folder>
+  <Folder Name="/Dependencias/">
+    <Project Path="Dependencias/GeradorDocumentos.Dominio/GeradorDocumentos.Dominio.csproj" />
+  </Folder>
+</Solution>
