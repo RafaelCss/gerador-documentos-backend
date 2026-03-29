@@ -3,6 +3,7 @@
     <Project Path="GeradorDocumentos.Api/GeradorDocumentos.Api.csproj" />
   </Folder>
   <Folder Name="/Dependencias/">
+    <Project Path="Dependencias/GeradorDocumentos.Aplicacao/GeradorDocumentos.Aplicacao.csproj" Id="eb04577f-a5c9-4585-a0c5-9f6dc966f661" />
     <Project Path="Dependencias/GeradorDocumentos.Dominio/GeradorDocumentos.Dominio.csproj" />
     <Project Path="Dependencias/GeradorDocumentos.Infra/GeradorDocumentos.Infra.csproj" Id="ba171e28-6333-48c4-857b-f2537d80d924" />
   </Folder>
