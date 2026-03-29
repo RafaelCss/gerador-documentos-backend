@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Dependencias\GeradorDocumentos.Dominio\GeradorDocumentos.Dominio.csproj" />
+    <ProjectReference Include="..\Dependencias\GeradorDocumentos.Infra\GeradorDocumentos.Infra.csproj" />
   </ItemGroup>
 
 </Project>

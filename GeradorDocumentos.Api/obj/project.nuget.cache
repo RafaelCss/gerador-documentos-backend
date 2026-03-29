@@ -1,12 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "lSv/IctEULg=",
+  "dgSpecHash": "JuAVlBfjfIo=",
   "success": true,
   "projectFilePath": "C:\\Projetos\\GeradorDocumentos\\GeradorDocumentos.Api\\GeradorDocumentos.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rf201\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.5\\microsoft.aspnetcore.openapi.10.0.5.nupkg.sha512",
+    "C:\\Users\\rf201\\.nuget\\packages\\microsoft.io.recyclablememorystream\\3.0.1\\microsoft.io.recyclablememorystream.3.0.1.nupkg.sha512",
     "C:\\Users\\rf201\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512",
-    "C:\\Users\\rf201\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.23.0\\microsoft.visualstudio.azure.containers.tools.targets.1.23.0.nupkg.sha512"
+    "C:\\Users\\rf201\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.23.0\\microsoft.visualstudio.azure.containers.tools.targets.1.23.0.nupkg.sha512",
+    "C:\\Users\\rf201\\.nuget\\packages\\puppeteersharp\\24.40.0\\puppeteersharp.24.40.0.nupkg.sha512",
+    "C:\\Users\\rf201\\.nuget\\packages\\webdriverbidi\\0.0.45\\webdriverbidi.0.0.45.nupkg.sha512"
   ],
   "logs": []
 }
