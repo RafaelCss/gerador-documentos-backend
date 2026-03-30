@@ -24,6 +24,22 @@
           "build/Microsoft.AspNetCore.OpenApi.targets": {}
         }
       },
+      "Microsoft.Extensions.DependencyInjection/10.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
+      },
       "Microsoft.IO.RecyclableMemoryStream/3.0.1": {
         "type": "package",
         "compile": {
@@ -87,6 +103,20 @@
           }
         }
       },
+      "GeradorDocumento.Ioc/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "GeradorDocumentos.Dominio": "1.0.0",
+          "GeradorDocumentos.Infra": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GeradorDocumento.Ioc.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GeradorDocumento.Ioc.dll": {}
+        }
+      },
       "GeradorDocumentos.Dominio/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -130,6 +160,37 @@
         "lib/net10.0/Microsoft.AspNetCore.OpenApi.xml",
         "microsoft.aspnetcore.openapi.10.0.5.nupkg.sha512",
         "microsoft.aspnetcore.openapi.nuspec"
+      ]
+    },
+    "Microsoft.Extensions.DependencyInjection/10.0.0": {
+      "sha512": "f0RBabswJq+gRu5a+hWIobrLWiUYPKMhCD9WO3sYBAdSy3FFH14LMvLVFZc2kPSCimBLxSuitUhsd6tb0TAY6A==",
+      "type": "package",
+      "path": "microsoft.extensions.dependencyinjection/10.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/Microsoft.Extensions.DependencyInjection.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net8.0/_._",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.DependencyInjection.targets",
+        "lib/net10.0/Microsoft.Extensions.DependencyInjection.dll",
+        "lib/net10.0/Microsoft.Extensions.DependencyInjection.xml",
+        "lib/net462/Microsoft.Extensions.DependencyInjection.dll",
+        "lib/net462/Microsoft.Extensions.DependencyInjection.xml",
+        "lib/net8.0/Microsoft.Extensions.DependencyInjection.dll",
+        "lib/net8.0/Microsoft.Extensions.DependencyInjection.xml",
+        "lib/net9.0/Microsoft.Extensions.DependencyInjection.dll",
+        "lib/net9.0/Microsoft.Extensions.DependencyInjection.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.xml",
+        "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.dll",
+        "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.xml",
+        "microsoft.extensions.dependencyinjection.10.0.0.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.nuspec",
+        "useSharedDesignerContext.txt"
       ]
     },
     "Microsoft.IO.RecyclableMemoryStream/3.0.1": {
@@ -284,6 +345,11 @@
         "webdriverbidi.nuspec"
       ]
     },
+    "GeradorDocumento.Ioc/1.0.0": {
+      "type": "project",
+      "path": "../Dependencias/GeradorDocumento.Ioc/GeradorDocumento.Ioc.csproj",
+      "msbuildProject": "../Dependencias/GeradorDocumento.Ioc/GeradorDocumento.Ioc.csproj"
+    },
     "GeradorDocumentos.Dominio/1.0.0": {
       "type": "project",
       "path": "../Dependencias/GeradorDocumentos.Dominio/GeradorDocumentos.Dominio.csproj",
@@ -297,9 +363,10 @@
   },
   "projectFileDependencyGroups": {
     "net10.0": [
+      "GeradorDocumento.Ioc >= 1.0.0",
       "GeradorDocumentos.Dominio >= 1.0.0",
-      "GeradorDocumentos.Infra >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 10.0.5",
+      "Microsoft.Extensions.DependencyInjection >= 10.0.0",
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.23.0"
     ]
   },
@@ -335,11 +402,11 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "projectReferences": {
+            "C:\\Projetos\\GeradorDocumentos\\Dependencias\\GeradorDocumento.Ioc\\GeradorDocumento.Ioc.csproj": {
+              "projectPath": "C:\\Projetos\\GeradorDocumentos\\Dependencias\\GeradorDocumento.Ioc\\GeradorDocumento.Ioc.csproj"
+            },
             "C:\\Projetos\\GeradorDocumentos\\Dependencias\\GeradorDocumentos.Dominio\\GeradorDocumentos.Dominio.csproj": {
               "projectPath": "C:\\Projetos\\GeradorDocumentos\\Dependencias\\GeradorDocumentos.Dominio\\GeradorDocumentos.Dominio.csproj"
-            },
-            "C:\\Projetos\\GeradorDocumentos\\Dependencias\\GeradorDocumentos.Infra\\GeradorDocumentos.Infra.csproj": {
-              "projectPath": "C:\\Projetos\\GeradorDocumentos\\Dependencias\\GeradorDocumentos.Infra\\GeradorDocumentos.Infra.csproj"
             }
           }
         }
@@ -363,6 +430,10 @@
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
             "version": "[10.0.5, )"
+          },
+          "Microsoft.Extensions.DependencyInjection": {
+            "target": "Package",
+            "version": "[10.0.0, )"
           },
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
             "target": "Package",
@@ -805,5 +876,17 @@
         }
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1510",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "PackageReference Microsoft.Extensions.DependencyInjection não será podado. Considere remover este pacote das dependências, pois ele provavelmente é desnecessário.",
+      "libraryId": "Microsoft.Extensions.DependencyInjection",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
 }
