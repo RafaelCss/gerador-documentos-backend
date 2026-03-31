@@ -1,6 +1,3 @@
-using GeradorDocumentos.Dominio.Contrato;
-using GeradorDocumentos.Infra.Servicos.FakeAI;
-using GeradorDocumentos.Infra.Servicos.Pdf;
 using GeradorDocumento.Ioc.Infra.MediatorExtensions;
 using GeradorDocumento.Ioc.Dominio;
 
