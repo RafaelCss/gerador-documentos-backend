@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GeradorDocumentos.Dominio")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2bf3be0864ce3df0878eaae08eb7adc3d5e55e59")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5bbc9f1fcbf53f503738cb7c5c815b5aa693bc74")]
 [assembly: System.Reflection.AssemblyProductAttribute("GeradorDocumentos.Dominio")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GeradorDocumentos.Dominio")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
