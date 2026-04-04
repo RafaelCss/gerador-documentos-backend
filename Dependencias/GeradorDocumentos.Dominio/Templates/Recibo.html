@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', sans-serif; font-size: 13px; color: #1a1a1a; background: #fff; padding: 40px; }
+  .doc { max-width: 680px; margin: 0 auto; }
+
+  /* Header */
+  .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 2px solid #1a1a1a; }
+  .company-name { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
+  .company-sub { font-size: 11px; color: #555; margin-top: 2px; }
+  .doc-badge { text-align: right; }
+  .doc-badge .label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #888; }
+  .doc-badge .number { font-size: 18px; font-weight: 700; color: #1a1a1a; }
+
+  /* Valor destaque */
+  .amount-block { background: #1a1a1a; color: #fff; border-radius: 8px; padding: 20px 28px; margin-bottom: 28px; display: flex; justify-content: space-between; align-items: center; }
+  .amount-block .label { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #aaa; }
+  .amount-block .value { font-size: 30px; font-weight: 700; letter-spacing: -1px; }
+
+  /* Dados */
+  .section-title { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #888; margin-bottom: 12px; }
+  .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .field label { font-size: 10px; color: #888; letter-spacing: 0.5px; display: block; margin-bottom: 3px; }
+  .field span { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+
+  /* Descrição */
+  .desc-box { border: 1px solid #e0e0e0; border-radius: 6px; padding: 14px 16px; margin-bottom: 28px; }
+  .desc-box p { color: #333; line-height: 1.6; }
+
+  /* Extenso */
+  .extenso { font-size: 11px; color: #555; font-style: italic; margin-bottom: 28px; }
+
+  /* Rodapé / Assinatura */
+  .footer { display: flex; justify-content: space-between; align-items: flex-end; padding-top: 20px; border-top: 1px solid #e0e0e0; }
+  .sig-line { text-align: center; }
+  .sig-line .line { border-top: 1px solid #555; width: 200px; margin-bottom: 6px; }
+  .sig-line span { font-size: 11px; color: #555; }
+  .stamp { text-align: right; font-size: 10px; color: #aaa; }
+  .stamp strong { display: block; font-size: 11px; color: #555; }
+
+  /* Marca d'água paga */
+  .watermark { position: relative; }
+  /* Adicione class "pago" no .doc para exibir */
+  .pago::after { content: 'PAGO'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-30deg); font-size: 80px; font-weight: 900; color: rgba(0,180,0,0.07); pointer-events: none; letter-spacing: 6px; }
+</style>
+</head>
+<body>
+<div class="doc watermark">
+
+  <div class="header">
+    <div>
+      <div class="company-name">{{NomeEmpresa}}</div>
+      <div class="company-sub">CNPJ: {{CNPJ}} &nbsp;|&nbsp; {{EnderecoEmpresa}}</div>
+    </div>
+    <div class="doc-badge">
+      <div class="label">Recibo</div>
+      <div class="number">#{{NumeroRecibo}}</div>
+    </div>
+  </div>
+
+  <div class="amount-block">
+    <div>
+      <div class="label">Valor recebido</div>
+      <div class="value">R$ {{Valor}}</div>
+    </div>
+    <div style="text-align:right">
+      <div class="label">Data</div>
+      <div style="font-size:15px;font-weight:600;margin-top:4px;">{{Data}}</div>
+    </div>
+  </div>
+
+  <div class="section-title">Dados do pagador</div>
+  <div class="fields">
+    <div class="field"><label>Nome</label><span>{{NomePagador}}</span></div>
+    <div class="field"><label>CPF / CNPJ</label><span>{{DocumentoPagador}}</span></div>
+    <div class="field"><label>Endereço</label><span>{{EnderecoPagador}}</span></div>
+    <div class="field"><label>Telefone</label><span>{{TelefonePagador}}</span></div>
+  </div>
+
+  <div class="section-title">Referente a</div>
+  <div class="desc-box"><p>{{Descricao}}</p></div>
+
+  <div class="extenso">Valor por extenso: {{ValorExtenso}}</div>
+
+  <div class="footer">
+    <div class="sig-line">
+      <div class="line"></div>
+      <span>{{NomeRecebedor}}<br>{{CargoRecebedor}}</span>
+    </div>
+    <div class="stamp">
+      <strong>{{NomeEmpresa}}</strong>
+      Emitido em {{DataEmissao}}
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

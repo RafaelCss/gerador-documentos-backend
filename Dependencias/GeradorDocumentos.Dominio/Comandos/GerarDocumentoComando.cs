@@ -33,25 +33,6 @@ public class GenerateDocumentHandler(IPdfService pdfService) : IRequestHandler<G
         return await _pdfService.GenerateAsync(html);
     }
 }
-public class GenerateDocumentHandler(IPdfService pdfService) : IRequestHandler<GerarDocumentoComando , byte[]>
-{
-    private readonly IPdfService _pdfService = pdfService;
-
-    public async ValueTask<byte[]> Handle(GerarDocumentoComando request , CancellationToken cancellationToken)
-    {
-        var html = $@"
-        <html>
-        <body>
-            <h1>Recibo</h1>
-            <p>Nome: {request.Nome}</p>
-            <p>Documento: {request.Documento}</p>
-            <p>Valor: R$ {request.Valor}</p>
-        </body>
-        </html>";
-
-        return await _pdfService.GenerateAsync(html);
-    }
-}
 public class ExtractDataHandler : IRequestHandler<ExtractDataCommand , string>
 {
     private readonly IAIService _ai;

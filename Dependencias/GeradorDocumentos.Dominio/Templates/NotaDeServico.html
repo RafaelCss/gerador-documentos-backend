@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', sans-serif; font-size: 13px; color: #1a1a1a; background: #fff; padding: 40px; }
+  .doc { max-width: 720px; margin: 0 auto; }
+
+  /* Cabeçalho */
+  .header { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: start; margin-bottom: 28px; }
+  .company-logo { width: 48px; height: 48px; border-radius: 8px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+  .company-name { font-size: 18px; font-weight: 700; }
+  .company-info { font-size: 11px; color: #666; margin-top: 2px; line-height: 1.6; }
+  .nota-info { text-align: right; }
+  .nota-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #888; }
+  .nota-number { font-size: 22px; font-weight: 800; color: #1a1a1a; }
+  .nota-date { font-size: 11px; color: #666; margin-top: 4px; }
+
+  /* Linha divisória */
+  .divider { border: none; border-top: 1px solid #e0e0e0; margin: 20px 0; }
+  .divider-strong { border: none; border-top: 2px solid #1a1a1a; margin: 20px 0; }
+
+  /* Partes */
+  .parties { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+  .party-box { background: #f8f8f8; border-radius: 8px; padding: 14px 16px; }
+  .party-role { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #888; margin-bottom: 8px; }
+  .party-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .party-detail { font-size: 11px; color: #555; line-height: 1.6; }
+
+  /* Tabela de serviços */
+  .section-title { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #888; margin-bottom: 12px; }
+  table.services { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  table.services thead tr { border-bottom: 1px solid #1a1a1a; }
+  table.services th { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #888; padding: 6px 8px; text-align: left; }
+  table.services th:last-child { text-align: right; }
+  table.services td { padding: 10px 8px; border-bottom: 1px solid #f0f0f0; font-size: 13px; vertical-align: top; }
+  table.services td:last-child { text-align: right; font-weight: 600; white-space: nowrap; }
+  table.services tbody tr:last-child td { border-bottom: none; }
+
+  /* Totais */
+  .totals { margin-left: auto; width: 260px; }
+  .total-row { display: flex; justify-content: space-between; padding: 5px 0; font-size: 13px; }
+  .total-row.subtotal { color: #555; }
+  .total-row.tax { color: #555; font-size: 12px; }
+  .total-row.grand { font-size: 16px; font-weight: 800; border-top: 2px solid #1a1a1a; margin-top: 6px; padding-top: 8px; }
+
+  /* Obs e condições */
+  .obs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+  .obs-box { border: 1px solid #e0e0e0; border-radius: 6px; padding: 12px 14px; }
+  .obs-box .label { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #888; margin-bottom: 6px; }
+  .obs-box p { font-size: 12px; color: #444; line-height: 1.6; }
+
+  /* Status badge */
+  .status-badge { display: inline-block; padding: 4px 12px; border-radius: 100px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+  .status-pendente { background: #fff3cd; color: #856404; }
+  .status-pago { background: #d1fae5; color: #065f46; }
+  .status-cancelado { background: #fee2e2; color: #991b1b; }
+
+  /* Rodapé */
+  .footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid #e0e0e0; display: flex; justify-content: space-between; align-items: flex-end; }
+  .footer-note { font-size: 10px; color: #aaa; max-width: 300px; line-height: 1.6; }
+  .sig-area { text-align: center; }
+  .sig-line { border-top: 1px solid #555; width: 180px; margin: 0 auto 6px; }
+  .sig-label { font-size: 11px; color: #555; }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <div class="header">
+    <div>
+      <div class="company-logo">{{SiglaPrestador}}</div>
+      <div class="company-name">{{NomePrestador}}</div>
+      <div class="company-info">
+        CNPJ: {{CNPJPrestador}}<br>
+        {{EnderecoPrestador}}<br>
+        {{TelefonePrestador}} &nbsp;|&nbsp; {{EmailPrestador}}
+      </div>
+    </div>
+    <div class="nota-info">
+      <div class="nota-label">Nota de Serviço</div>
+      <div class="nota-number">#{{NumeroNota}}</div>
+      <div class="nota-date">Emissão: {{DataEmissao}}</div>
+      <div style="margin-top:8px;">
+        <span class="status-badge status-{{StatusClass}}">{{StatusTexto}}</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider-strong">
+
+  <div class="parties">
+    <div class="party-box">
+      <div class="party-role">Prestador de Serviço</div>
+      <div class="party-name">{{NomePrestador}}</div>
+      <div class="party-detail">
+        CNPJ: {{CNPJPrestador}}<br>
+        {{EnderecoPrestador}}<br>
+        IE: {{InscricaoEstadualPrestador}}
+      </div>
+    </div>
+    <div class="party-box">
+      <div class="party-role">Tomador de Serviço</div>
+      <div class="party-name">{{NomeTomador}}</div>
+      <div class="party-detail">
+        CPF/CNPJ: {{DocumentoTomador}}<br>
+        {{EnderecoTomador}}<br>
+        {{TelefoneTomador}}
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">Serviços prestados</div>
+  <table class="services">
+    <thead>
+      <tr>
+        <th style="width:40%">Descrição</th>
+        <th style="width:15%">Qtd</th>
+        <th style="width:20%">Unidade</th>
+        <th style="width:15%">Unit. (R$)</th>
+        <th>Total (R$)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each Itens}}
+      <tr>
+        <td>{{Descricao}}</td>
+        <td>{{Quantidade}}</td>
+        <td>{{Unidade}}</td>
+        <td>{{ValorUnitario}}</td>
+        <td>{{ValorTotal}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  <div style="display:flex;justify-content:flex-end;">
+    <div class="totals">
+      <div class="total-row subtotal"><span>Subtotal</span><span>R$ {{Subtotal}}</span></div>
+      <div class="total-row tax"><span>ISS ({{AliquotaISS}}%)</span><span>R$ {{ValorISS}}</span></div>
+      <div class="total-row tax"><span>Desconto</span><span>- R$ {{Desconto}}</span></div>
+      <div class="total-row grand"><span>Total</span><span>R$ {{Total}}</span></div>
+    </div>
+  </div>
+
+  <div class="obs-grid">
+    <div class="obs-box">
+      <div class="label">Condições de pagamento</div>
+      <p>{{CondicoesPagamento}}</p>
+    </div>
+    <div class="obs-box">
+      <div class="label">Observações</div>
+      <p>{{Observacoes}}</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-note">
+      Documento emitido eletronicamente. Válido como comprovante de prestação de serviços conforme Lei Complementar 116/2003.
+    </div>
+    <div class="sig-area">
+      <div class="sig-line"></div>
+      <div class="sig-label">{{NomePrestador}}<br>{{CargoResponsavel}}</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
