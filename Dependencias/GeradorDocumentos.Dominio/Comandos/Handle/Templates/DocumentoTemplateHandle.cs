@@ -6,37 +6,33 @@ using System.Text;
 /// Carrega um template HTML da pasta Templates/ e substitui as variáveis {{Variavel}}.
 /// Compatível com qualquer IPdfService que aceite HTML como string.
 /// </summary>
-public static class DocumentTemplate
+public class DocumentoTemplateHandle
 {
-    private static readonly string TemplatesPath =
-        Path.Combine(AppContext.BaseDirectory, "C:\\Projetos\\GeradorDocumentos\\Dependencias\\GeradorDocumentos.Dominio\\Templates\\");
+    private readonly ITemplateProvider _templateProvider;
 
-    /// <summary>
-    /// Carrega o arquivo de template e faz substituição simples de variáveis.
-    /// </summary>
-    /// <param name="templateName">Nome do arquivo sem extensão, ex: "Recibo"</param>
-    /// <param name="variables">Dicionário com chave = nome da variável (sem {{}}), valor = conteúdo</param>
-    public static string Render(string templateName, Dictionary<string, string> variables)
+    public DocumentoTemplateHandle(ITemplateProvider templateProvider)
     {
-        var path = Path.Combine(TemplatesPath, $"{templateName}.html");
+        _templateProvider = templateProvider;
+    }
 
-        if (!File.Exists(path))
-            throw new FileNotFoundException($"Template '{templateName}.html' não encontrado em {TemplatesPath}");
+    public async Task<string> RenderAsync(
+        string templateName ,
+        Dictionary<string , string> variables)
+    {
+        var html = await _templateProvider.ObterTemplateAsync($"{templateName}.html");
 
-        var html = File.ReadAllText(path, Encoding.UTF8);
-
-        foreach (var (key, value) in variables)
-            html = html.Replace($"{{{{{key}}}}}", value ?? string.Empty);
+        foreach (var (key , value) in variables)
+            html = html.Replace($"{{{{{key}}}}}" , value ?? string.Empty);
 
         return html;
     }
 }
 // RECIBO
-public class GerarReciboHandler(IPdfService pdfService) : IRequestHandler<GerarReciboComando, byte[]>
+public class GerarReciboHandler(IPdfService pdfService , DocumentoTemplateHandle documentTemplate) : IRequestHandler<GerarReciboComando, byte[]>
 {
     public async ValueTask<byte[]> Handle(GerarReciboComando req, CancellationToken ct)
     {
-        var html = DocumentTemplate.Render("Recibo", new()
+        var html = await documentTemplate.RenderAsync("Recibo", new()
         {
             ["NomeEmpresa"]      = req.NomeEmpresa,
             ["CNPJ"]             = req.CNPJ,
@@ -60,7 +56,7 @@ public class GerarReciboHandler(IPdfService pdfService) : IRequestHandler<GerarR
 }
 
 // NOTA DE SERVIÇO
-public class GerarNotaHandler(IPdfService pdfService) : IRequestHandler<GerarNotaDeServicoComando , byte[]>
+public class GerarNotaHandler(IPdfService pdfService , DocumentoTemplateHandle documentTemplate) : IRequestHandler<GerarNotaDeServicoComando , byte[]>
 {
     public async ValueTask<byte[]> Handle(GerarNotaDeServicoComando req , CancellationToken ct)
     {
@@ -79,7 +75,7 @@ public class GerarNotaHandler(IPdfService pdfService) : IRequestHandler<GerarNot
             """);
         }
 
-        var html = DocumentTemplate.Render("NotaDeServico", new()
+        var html =  await documentTemplate.RenderAsync("NotaDeServico", new()
         {
             ["SiglaPrestador"]           = req.SiglaPrestador,
             ["NomePrestador"]            = req.NomePrestador,
@@ -112,14 +108,14 @@ public class GerarNotaHandler(IPdfService pdfService) : IRequestHandler<GerarNot
 }
 
 // CONTRACHEQUE
-public class GerarContrachequeHandler(IPdfService pdfService) : IRequestHandler<GerarContrachequeComando, byte[]>
+public class GerarContrachequeHandler(IPdfService pdfService, DocumentoTemplateHandle documentTemplate) : IRequestHandler<GerarContrachequeComando, byte[]>
 {
     public async ValueTask<byte[]> Handle(GerarContrachequeComando req, CancellationToken ct)
     {
         var proventosHtml  = BuildRubricaRows(req.Proventos);
         var descontosHtml  = BuildRubricaRows(req.Descontos);
 
-        var html = DocumentTemplate.Render("Contracheque", new()
+        var html = await documentTemplate.RenderAsync("Contracheque", new()
         {
             ["NomeEmpresa"]      = req.NomeEmpresa,
             ["CNPJEmpresa"]      = req.CNPJEmpresa,

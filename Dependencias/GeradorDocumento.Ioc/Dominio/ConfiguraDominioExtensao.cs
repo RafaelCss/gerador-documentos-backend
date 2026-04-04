@@ -1,4 +1,5 @@
 ﻿using GeradorDocumentos.Dominio.Contrato;
+using GeradorDocumentos.Dominio.Services;
 using GeradorDocumentos.Infra.Servicos.FakeAI;
 using GeradorDocumentos.Infra.Servicos.Pdf;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,8 +12,8 @@ public static class ConfiguraDominioExtensao
     {
         services.AddScoped<IPdfService , PdfService>();
         services.AddScoped<IAIService , FakeAIService>();
-
-
+        services.AddScoped<ITemplateProvider , FileTemplateProvider>();
+        services.AddScoped<DocumentoTemplateHandle>();
         return services;
 
     }
