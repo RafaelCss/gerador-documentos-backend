@@ -91,9 +91,9 @@ public class GerarNotaHandler(IPdfService pdfService , DocumentoTemplateHandle d
             ["TelefoneTomador"]          = req.TelefoneTomador,
             ["NumeroNota"]               = req.NumeroNota,
             ["DataEmissao"]              = req.DataEmissao.ToString("dd/MM/yyyy"),
-            ["StatusClass"]              = req.Status.ToString().ToLower(),   // "pendente" | "pago" | "cancelado"
+            ["StatusClass"]              = req.Status.ToString().ToLower(),   
             ["StatusTexto"]              = req.Status.ToString(),
-            ["{{#each Itens}}{{/each}}"] = itensHtml.ToString(), // substituição direta do bloco
+            ["{{#each Itens}}{{/each}}"] = itensHtml.ToString(), 
             ["Subtotal"]                 = req.Subtotal.ToString("N2"),
             ["AliquotaISS"]              = req.AliquotaISS.ToString("F1"),
             ["ValorISS"]                 = req.ValorISS.ToString("N2"),
@@ -120,7 +120,7 @@ public class GerarContrachequeHandler(IPdfService pdfService, DocumentoTemplateH
             ["NomeEmpresa"]      = req.NomeEmpresa,
             ["CNPJEmpresa"]      = req.CNPJEmpresa,
             ["EnderecoEmpresa"]  = req.EnderecoEmpresa,
-            ["Competencia"]      = req.Competencia,               // ex: "Março/2025"
+            ["Competencia"]      = req.Competencia,               
             ["NomeFuncionario"]  = req.NomeFuncionario,
             ["Matricula"]        = req.Matricula,
             ["Cargo"]            = req.Cargo,
@@ -138,7 +138,7 @@ public class GerarContrachequeHandler(IPdfService pdfService, DocumentoTemplateH
             ["FGTSMes"]          = req.FGTSMes.ToString("N2"),
             ["SalarioBase"]      = req.SalarioBase.ToString("N2"),
             ["BancoHoras"]       = req.BancoHoras.ToString("N1"),
-            // Substitua os blocos {{#each}} com HTML gerado
+
             ["{{#each Proventos}}{{/each}}"] = proventosHtml,
             ["{{#each Descontos}}{{/each}}"] = descontosHtml,
         });
