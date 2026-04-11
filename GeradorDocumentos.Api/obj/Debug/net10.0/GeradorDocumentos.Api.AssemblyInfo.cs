@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GeradorDocumentos.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3e1d3ef9b0b78421b62c79f4f330a609bf02c855")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dc92790a8ffa67be63f3eb8dd789b7dcd0ec78e9")]
 [assembly: System.Reflection.AssemblyProductAttribute("GeradorDocumentos.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GeradorDocumentos.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

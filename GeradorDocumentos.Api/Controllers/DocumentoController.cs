@@ -70,6 +70,22 @@ public class DocumentoController(IMediator mediator) : ControllerBase
         return File(pdf , "application/pdf" , fileName);
     }
 
+    /// <summary>
+    /// Gera um contrato de compra e venda em PDF.
+    /// </summary>
+    [HttpPost("contrato-compra-venda")]
+    [ProducesResponseType(typeof(FileContentResult) , StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> GerarContratoCompraVenda(
+        [FromBody] GerarContratoCompraVendaComando command ,
+        CancellationToken cancellationToken)
+    {
+        var pdf = await _mediator.Send(command , cancellationToken);
+
+        var fileName = $"contrato-{command.NumeroContrato}-{command.DataAssinatura:yyyy-MM-dd}.pdf";
+
+        return File(pdf , "application/pdf" , fileName);
+    }
     [HttpPost("extract")]
     public async Task<IActionResult> Extract(IFormFile file, CancellationToken cancellationToken)
     {
@@ -83,5 +99,6 @@ public class DocumentoController(IMediator mediator) : ControllerBase
 
         return Ok(result);
     }
+
 } 
 

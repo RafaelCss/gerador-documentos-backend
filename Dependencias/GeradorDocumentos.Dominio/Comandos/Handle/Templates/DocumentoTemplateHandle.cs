@@ -165,3 +165,95 @@ public class GerarContrachequeHandler(IPdfService pdfService, DocumentoTemplateH
         return sb.ToString();
     }
 }
+
+
+
+public class GerarContratoCompraVendaHandler(IPdfService pdfService , DocumentoTemplateHandle documentTemplate)
+    : IRequestHandler<GerarContratoCompraVendaComando , byte[]>
+{
+
+    public async ValueTask<byte[]> Handle(
+        GerarContratoCompraVendaComando req ,
+        CancellationToken cancellationToken)
+    {
+        var html = await documentTemplate.RenderAsync("ContratoCompraVenda" , new()
+        {
+            // Identificação
+            ["NumeroContrato"] = req.NumeroContrato ,
+            ["DataEmissao"] = DateTime.Now.ToString("dd/MM/yyyy HH:mm") ,
+
+            // Vendedor
+            ["NomeVendedor"] = req.NomeVendedor ,
+            ["NacionalidadeVendedor"] = req.NacionalidadeVendedor ,
+            ["EstadoCivilVendedor"] = req.EstadoCivilVendedor ,
+            ["ProfissaoVendedor"] = req.ProfissaoVendedor ,
+            ["DocumentoVendedor"] = req.DocumentoVendedor ,
+            ["RGVendedor"] = req.RGVendedor ,
+            ["EnderecoVendedor"] = req.EnderecoVendedor ,
+            ["CEPVendedor"] = req.CEPVendedor ,
+
+            // Comprador
+            ["NomeComprador"] = req.NomeComprador ,
+            ["NacionalidadeComprador"] = req.NacionalidadeComprador ,
+            ["EstadoCivilComprador"] = req.EstadoCivilComprador ,
+            ["ProfissaoComprador"] = req.ProfissaoComprador ,
+            ["DocumentoComprador"] = req.DocumentoComprador ,
+            ["RGComprador"] = req.RGComprador ,
+            ["EnderecoComprador"] = req.EnderecoComprador ,
+            ["CEPComprador"] = req.CEPComprador ,
+
+            // Bem
+            ["TipoBem"] = req.TipoBem ,
+            ["DescricaoBem"] = req.DescricaoBem ,
+            ["MarcaModelo"] = req.MarcaModelo ,
+            ["IdentificacaoBem"] = req.IdentificacaoBem ,
+            ["EstadoConservacao"] = req.EstadoConservacao ,
+            ["ObservacoesBem"] = req.ObservacoesBem ,
+
+            // Valor
+            ["Valor"] = req.Valor.ToString("N2") ,
+            ["ValorExtenso"] = req.ValorExtenso ,
+
+            // Pagamento
+            ["ValorEntrada"] = req.ValorEntrada.ToString("N2") ,
+            ["EntradaExtenso"] = req.EntradaExtenso ,
+            ["FormaPagamentoEntrada"] = req.FormaPagamentoEntrada ,
+            ["ValorSaldo"] = req.ValorSaldo.ToString("N2") ,
+            ["SaldoExtenso"] = req.SaldoExtenso ,
+            ["ParcelasRestantes"] = req.ParcelasRestantes.ToString() ,
+            ["ValorParcela"] = req.ValorParcela.ToString("N2") ,
+            ["DataPrimeiraParcela"] = req.DataPrimeiraParcela.ToString("dd/MM/yyyy") ,
+            ["FormaPagamentoSaldo"] = req.FormaPagamentoSaldo ,
+
+            // Entrega
+            ["DataEntrega"] = req.DataEntrega.ToString("dd/MM/yyyy") ,
+            ["LocalEntrega"] = req.LocalEntrega ,
+            ["ResponsavelFrete"] = req.ResponsavelFrete ,
+
+            // Garantia
+            ["PrazoGarantia"] = req.PrazoGarantia ,
+            ["DescricaoGarantia"] = req.DescricaoGarantia ,
+
+            // Rescisão
+            ["PrazoNotificacaoRescisao"] = req.PrazoNotificacaoRescisao.ToString() ,
+            ["PercentualMultaRescisao"] = req.PercentualMultaRescisao.ToString() ,
+
+            // Foro
+            ["ComarcaForo"] = req.ComarcaForo ,
+            ["EstadoForo"] = req.EstadoForo ,
+
+            // Assinatura
+            ["CidadeAssinatura"] = req.CidadeAssinatura ,
+            ["DataAssinatura"] = req.DataAssinatura.ToString("dd 'de' MMMM 'de' yyyy" ,
+                                            new System.Globalization.CultureInfo("pt-BR")) ,
+
+            // Testemunhas
+            ["NomeTestemunha1"] = req.NomeTestemunha1 ,
+            ["CPFTestemunha1"] = req.CPFTestemunha1 ,
+            ["NomeTestemunha2"] = req.NomeTestemunha2 ,
+            ["CPFTestemunha2"] = req.CPFTestemunha2 ,
+        });
+
+        return await pdfService.GenerateAsync(html);
+    }
+}

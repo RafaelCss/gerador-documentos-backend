@@ -1,0 +1,512 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 12px;
+            color: #1a1a1a;
+            background: #fff;
+            padding: 60px 72px;
+            line-height: 1.8;
+        }
+
+        .doc {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        /* Topo */
+        .header {
+            text-align: center;
+            border-bottom: 3px double #1a1a1a;
+            padding-bottom: 20px;
+            margin-bottom: 28px;
+        }
+
+            .header .titulo {
+                font-size: 16px;
+                font-weight: 700;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+            }
+
+            .header .subtitulo {
+                font-size: 11px;
+                color: #555;
+                margin-top: 4px;
+                letter-spacing: 1px;
+            }
+
+        .numero-contrato {
+            display: inline-block;
+            margin-top: 10px;
+            border: 1px solid #1a1a1a;
+            padding: 3px 14px;
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+        /* Qualificação das partes */
+        .qualificacao {
+            margin-bottom: 20px;
+        }
+
+            .qualificacao p {
+                text-align: justify;
+                margin-bottom: 10px;
+            }
+
+        .parte-label {
+            font-weight: 700;
+            font-variant: small-caps;
+            letter-spacing: 1px;
+        }
+
+        /* Cláusulas */
+        .clausula {
+            margin-bottom: 20px;
+        }
+
+        .clausula-titulo {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            border-left: 3px solid #1a1a1a;
+            padding-left: 8px;
+        }
+
+        .clausula p {
+            text-align: justify;
+            margin-bottom: 8px;
+        }
+
+        .clausula ol {
+            padding-left: 20px;
+            margin-bottom: 8px;
+        }
+
+            .clausula ol li {
+                margin-bottom: 6px;
+                text-align: justify;
+            }
+
+        /* Parágrafo único */
+        .paragrafo-unico {
+            margin-left: 20px;
+            margin-top: 6px;
+            font-style: italic;
+        }
+
+            .paragrafo-unico::before {
+                content: 'Parágrafo único. ';
+                font-weight: 700;
+                font-style: normal;
+            }
+
+        /* Tabela de bem */
+        table.bem {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 11px;
+        }
+
+            table.bem th {
+                background: #1a1a1a;
+                color: #fff;
+                padding: 7px 10px;
+                text-align: left;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+            }
+
+            table.bem td {
+                padding: 7px 10px;
+                border-bottom: 1px solid #e0e0e0;
+                vertical-align: top;
+            }
+
+            table.bem tr:last-child td {
+                border-bottom: none;
+            }
+
+            table.bem tr:nth-child(even) td {
+                background: #f9f9f9;
+            }
+
+        /* Valor destacado */
+        .valor-box {
+            background: #f3f3f3;
+            border-left: 4px solid #1a1a1a;
+            padding: 12px 16px;
+            margin: 12px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            .valor-box .label {
+                font-size: 10px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                color: #666;
+            }
+
+            .valor-box .value {
+                font-size: 20px;
+                font-weight: 700;
+                font-family: 'Segoe UI', sans-serif;
+            }
+
+            .valor-box .extenso {
+                font-size: 11px;
+                color: #555;
+                font-style: italic;
+                margin-top: 2px;
+            }
+
+        /* Local e data */
+        .local-data {
+            text-align: center;
+            margin: 32px 0 28px;
+            font-size: 12px;
+            color: #333;
+        }
+
+        /* Assinaturas */
+        .assinaturas {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 8px;
+        }
+
+        .assinatura-bloco {
+            text-align: center;
+        }
+
+        .assinatura-linha {
+            border-top: 1px solid #555;
+            margin-bottom: 6px;
+        }
+
+        .assinatura-nome {
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .assinatura-detalhe {
+            font-size: 11px;
+            color: #555;
+        }
+
+        .testemunhas {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 36px;
+        }
+
+        .testemunha-bloco {
+            text-align: center;
+        }
+
+        .testemunha-linha {
+            border-top: 1px solid #aaa;
+            margin-bottom: 6px;
+        }
+
+        .testemunha-label {
+            font-size: 10px;
+            color: #888;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .testemunha-nome {
+            font-size: 11px;
+            color: #444;
+        }
+
+        /* Rodapé */
+        .footer {
+            margin-top: 32px;
+            padding-top: 12px;
+            border-top: 1px solid #ddd;
+            font-size: 10px;
+            color: #aaa;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        /* Separador de seção */
+        hr.section {
+            border: none;
+            border-top: 1px dashed #ccc;
+            margin: 20px 0;
+        }
+
+        @media print {
+            body {
+                padding: 40px;
+            }
+
+            .clausula {
+                page-break-inside: avoid;
+            }
+
+            .assinaturas {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="doc">
+
+        <!-- Cabeçalho -->
+        <div class="header">
+            <div class="titulo">Contrato de Compra e Venda</div>
+            <div class="subtitulo">Instrumento Particular</div>
+            <div class="numero-contrato">Nº {{NumeroContrato}}</div>
+        </div>
+
+        <!-- Qualificação das partes -->
+        <div class="qualificacao">
+            <p>
+                Pelo presente instrumento particular de compra e venda, de um lado,
+                <span class="parte-label">{{NomeVendedor}}</span>,
+                {{NacionalidadeVendedor}}, {{EstadoCivilVendedor}}, {{ProfissaoVendedor}},
+                portador(a) do CPF/CNPJ nº <strong>{{DocumentoVendedor}}</strong>,
+                RG nº {{RGVendedor}}, residente e domiciliado(a) à
+                {{EnderecoVendedor}}, CEP {{CEPVendedor}},
+                doravante denominado(a) simplesmente <span class="parte-label">"VENDEDOR(A)"</span>;
+            </p>
+            <p>
+                E, de outro lado,
+                <span class="parte-label">{{NomeComprador}}</span>,
+                {{NacionalidadeComprador}}, {{EstadoCivilComprador}}, {{ProfissaoComprador}},
+                portador(a) do CPF/CNPJ nº <strong>{{DocumentoComprador}}</strong>,
+                RG nº {{RGComprador}}, residente e domiciliado(a) à
+                {{EnderecoComprador}}, CEP {{CEPComprador}},
+                doravante denominado(a) simplesmente <span class="parte-label">"COMPRADOR(A)"</span>;
+            </p>
+            <p>
+                Têm entre si justo e contratado o presente instrumento, que se regerá pelas
+                cláusulas e condições a seguir estipuladas, as quais aceitam e se obrigam a cumprir.
+            </p>
+        </div>
+
+        <hr class="section">
+
+        <!-- Cláusula 1 – Objeto -->
+        <div class="clausula">
+            <div class="clausula-titulo">Cláusula Primeira — Do Objeto</div>
+            <p>
+                O(A) VENDEDOR(A) vende ao(à) COMPRADOR(A), em caráter irrevogável e irretratável,
+                o bem descrito e caracterizado abaixo, livre e desembaraçado de quaisquer ônus,
+                dívidas, hipotecas, penhoras ou litígios de qualquer natureza:
+            </p>
+            <table class="bem">
+                <tr><th style="width:35%">Campo</th><th>Descrição</th></tr>
+                <tr><td>Tipo do bem</td><td>{{TipoBem}}</td></tr>
+                <tr><td>Descrição</td><td>{{DescricaoBem}}</td></tr>
+                <tr><td>Marca / Modelo</td><td>{{MarcaModelo}}</td></tr>
+                <tr><td>Identificação (chassi / matrícula / série)</td><td>{{IdentificacaoBem}}</td></tr>
+                <tr><td>Estado de conservação</td><td>{{EstadoConservacao}}</td></tr>
+                <tr><td>Observações</td><td>{{ObservacoesBem}}</td></tr>
+            </table>
+            <div class="paragrafo-unico">
+                O bem objeto deste contrato é entregue no estado em que se encontra,
+                conforme descrito acima, sendo o(a) COMPRADOR(A) ciente de suas condições
+                antes da celebração deste instrumento.
+            </div>
+        </div>
+
+        <!-- Cláusula 2 – Preço -->
+        <div class="clausula">
+            <div class="clausula-titulo">Cláusula Segunda — Do Preço</div>
+            <p>O preço total acordado entre as partes para a presente compra e venda é de:</p>
+            <div class="valor-box">
+                <div>
+                    <div class="label">Valor total</div>
+                    <div class="extenso">{{ValorExtenso}}</div>
+                </div>
+                <div class="value">R$ {{Valor}}</div>
+            </div>
+        </div>
+
+        <!-- Cláusula 3 – Pagamento -->
+        <div class="clausula">
+            <div class="clausula-titulo">Cláusula Terceira — Da Forma de Pagamento</div>
+            <p>O preço ajustado será pago pelo(a) COMPRADOR(A) ao(à) VENDEDOR(A) da seguinte forma:</p>
+            <ol>
+                <li>
+                    <strong>Sinal / Entrada:</strong> R$ {{ValorEntrada}} ({{EntradaExtenso}}),
+                    pagos neste ato, em {{FormaPagamentoEntrada}}, cuja quitação o(a) VENDEDOR(A) dá plena e geral.
+                </li>
+                <li>
+                    <strong>Saldo restante:</strong> R$ {{ValorSaldo}} ({{SaldoExtenso}}),
+                    a ser(em) pago(s) em {{ParcelasRestantes}} parcela(s) de R$ {{ValorParcela}} cada,
+                    vencendo-se a primeira em {{DataPrimeiraParcela}} e as demais em igual dia dos meses subsequentes,
+                    mediante {{FormaPagamentoSaldo}}.
+                </li>
+            </ol>
+            <div class="paragrafo-unico">
+                O não pagamento de qualquer parcela no prazo estipulado sujeitará o(a) COMPRADOR(A)
+                ao pagamento de multa moratória de 2% (dois por cento) sobre o valor em atraso,
+                acrescido de juros de 1% (um por cento) ao mês e correção monetária pelo IGPM/FGV,
+                sem prejuízo das demais penalidades previstas neste instrumento.
+            </div>
+        </div>
+
+        <!-- Cláusula 4 – Entrega -->
+        <div class="clausula">
+            <div class="clausula-titulo">Cláusula Quarta — Da Entrega</div>
+            <p>
+                O bem objeto deste contrato será entregue ao(à) COMPRADOR(A) em
+                <strong>{{DataEntrega}}</strong>, no endereço <strong>{{LocalEntrega}}</strong>,
+                mediante assinatura de recibo de entrega pelas partes.
+            </p>
+            <div class="paragrafo-unico">
+                As despesas com frete, transporte e seguro do bem durante a transferência
+                são de responsabilidade {{ResponsavelFrete}}.
+            </div>
+        </div>
+
+        <!-- Cláusula 5 – Transferência de propriedade -->
+        <div class="clausula">
+            <div class="clausula-titulo">Cláusula Quinta — Da Transferência de Propriedade</div>
+            <p>
+                A propriedade do bem transfere-se ao(à) COMPRADOR(A) somente após a
+                <strong>quitação integral</strong> do preço pactuado na Cláusula Segunda,
+                ficando o(a) VENDEDOR(A) como legítimo(a) proprietário(a) até esse momento,
+                nos termos do art. 521 do Código Civil Brasileiro.
+            </p>
+        </div>
+
+        <!-- Cláusula 6 – Garantias e evicção -->
+        <div class="clausula">
+            <div class="clausula-titulo">Cláusula Sexta — Das Garantias e Evicção</div>
+            <p>
+                O(A) VENDEDOR(A) declara expressamente que o bem é de sua livre e exclusiva
+                propriedade, inexistindo qualquer impedimento legal ou judicial para esta alienação,
+                responsabilizando-se pelos casos de evicção, na forma dos arts. 447 e seguintes
+                do Código Civil Brasileiro.
+            </p>
+            <p>Garantia do bem: <strong>{{PrazoGarantia}}</strong> — {{DescricaoGarantia}}.</p>
+        </div>
+
+        <!-- Cláusula 7 – Rescisão -->
+        <div class="clausula">
+            <div class="clausula-titulo">Cláusula Sétima — Da Rescisão</div>
+            <p>
+                O presente contrato poderá ser rescindido por qualquer das partes em caso de
+                inadimplemento das obrigações aqui previstas, mediante notificação escrita com
+                antecedência mínima de <strong>{{PrazoNotificacaoRescisao}} dias</strong>.
+            </p>
+            <ol>
+                <li>
+                    Em caso de rescisão por culpa do(a) COMPRADOR(A): o(a) VENDEDOR(A) reterá
+                    {{PercentualMultaRescisao}}% do valor já pago a título de cláusula penal, devolvendo
+                    o saldo remanescente em até 30 (trinta) dias.
+                </li>
+                <li>
+                    Em caso de rescisão por culpa do(a) VENDEDOR(A): este(a) devolverá o dobro
+                    do valor recebido, devidamente corrigido pelo IGPM/FGV, no prazo de 30 (trinta) dias.
+                </li>
+            </ol>
+        </div>
+
+        <!-- Cláusula 8 – Foro -->
+        <div class="clausula">
+            <div class="clausula-titulo">Cláusula Oitava — Do Foro</div>
+            <p>
+                As partes elegem o Foro da Comarca de <strong>{{ComarcaForo}}</strong>,
+                Estado de <strong>{{EstadoForo}}</strong>, para dirimir quaisquer dúvidas ou
+                litígios oriundos do presente instrumento, com renúncia expressa a qualquer outro,
+                por mais privilegiado que seja.
+            </p>
+        </div>
+
+        <!-- Cláusula 9 – Disposições gerais -->
+        <div class="clausula">
+            <div class="clausula-titulo">Cláusula Nona — Das Disposições Gerais</div>
+            <ol>
+                <li>
+                    Este instrumento é celebrado em caráter irrevogável e irretratável,
+                    obrigando as partes, seus herdeiros e sucessores a qualquer título.
+                </li>
+                <li>
+                    Qualquer alteração ou aditamento a este contrato somente será válido
+                    mediante instrumento escrito, assinado por ambas as partes.
+                </li>
+                <li>
+                    A tolerância de qualquer das partes quanto ao descumprimento de obrigações
+                    pela outra não importará em novação, renúncia ou alteração do pactuado.
+                </li>
+                <li>
+                    O presente contrato é celebrado com base nas disposições dos arts. 481 a 532
+                    do Código Civil Brasileiro (Lei nº 10.406/2002).
+                </li>
+            </ol>
+        </div>
+
+        <hr class="section">
+
+        <!-- Local e data -->
+        <div class="local-data">
+            {{CidadeAssinatura}}, {{DataAssinatura}}.
+        </div>
+
+        <!-- Assinaturas -->
+        <div class="assinaturas">
+            <div class="assinatura-bloco">
+                <div style="height: 48px;"></div>
+                <div class="assinatura-linha"></div>
+                <div class="assinatura-nome">{{NomeVendedor}}</div>
+                <div class="assinatura-detalhe">VENDEDOR(A) — CPF/CNPJ: {{DocumentoVendedor}}</div>
+            </div>
+            <div class="assinatura-bloco">
+                <div style="height: 48px;"></div>
+                <div class="assinatura-linha"></div>
+                <div class="assinatura-nome">{{NomeComprador}}</div>
+                <div class="assinatura-detalhe">COMPRADOR(A) — CPF/CNPJ: {{DocumentoComprador}}</div>
+            </div>
+        </div>
+
+        <!-- Testemunhas -->
+        <div class="testemunhas">
+            <div class="testemunha-bloco">
+                <div class="testemunha-label">Testemunha 1</div>
+                <div class="assinatura-linha" style="border-color:#aaa;"></div>
+                <div class="testemunha-nome">{{NomeTestemunha1}}<br>CPF: {{CPFTestemunha1}}</div>
+            </div>
+            <div class="testemunha-bloco">
+                <div class="testemunha-label">Testemunha 2</div>
+                <div class="assinatura-linha" style="border-color:#aaa;"></div>
+                <div class="testemunha-nome">{{NomeTestemunha2}}<br>CPF: {{CPFTestemunha2}}</div>
+            </div>
+        </div>
+
+        <!-- Rodapé -->
+        <div class="footer">
+            Contrato Nº {{NumeroContrato}} — Gerado em {{DataEmissao}}<br>
+            Este documento foi gerado eletronicamente e tem validade jurídica conforme a
+            Lei nº 14.063/2020 (Assinatura Eletrônica) e o Código Civil Brasileiro.
+        </div>
+
+    </div>
+</body>
+</html>
